@@ -1,0 +1,24 @@
+
+oracle-java8:
+  env_file: .env
+  build: docker-oracle-xe-11g/
+
+  volumes:
+    - /CMM:/CMM
+
+
+
+rundeck:
+  env_file: .env
+  build: rundeck/
+
+  #volumes:
+  #  - /data/rundeck:/var/rundeck
+
+  ports:
+    - "4440:4440"
+    - "4443:4443"
+
+  links:
+    - oracle-java8
+
